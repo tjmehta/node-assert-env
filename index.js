@@ -7,16 +7,10 @@
 module.exports = assertion;
 
 /*!
- * imports.
- */
-
-var format = require('util').format;
-
-/*!
  * strings.
  */
 
-var message = 'Missing required environment variable(s): %s!';
+var message = 'Missing required environment variable(s): ';
 
 /**
  * Assert that the given keys are found within `process.env`.
@@ -30,7 +24,7 @@ function assertion(keys) {
   var missing = keys.filter(isMissing);
 
   if (missing.length) {
-    throw new ReferenceError(format(message, missing.join(', ')));
+    throw new ReferenceError(message + missing.join(', ') + '!');
   }
 }
 
